@@ -31,3 +31,4 @@ class Brain:
                 self.stt.switch(msg)
             else:
                 print(msg)
+                self.tts.speak(msg)
