@@ -1,7 +1,5 @@
 # Unison - Python 3.5 - Johnathon Kwisses (Kwistech)
 
-"""Unison start script."""
-
 import sys
 from os import path
 

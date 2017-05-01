@@ -1,22 +1,33 @@
 """The "Brain" class handles most of Unison's processing."""
 
+from speech_to_text import SpeechToText
+from text_to_speech import TextToSpeech
+
+from classes.find import Find
+from classes.execute import Execute
+from classes.login import Login
+
 
 class Brain:
 
     def __init__(self):
-        stt = SpeechToText()
-        # speech-to-text
-        # text-to-speech
-        # find apis
-        # find mods
-        # login
+        self.stt = SpeechToText()
+        self.tts = TextToSpeech()
 
-        # program loop (run)
-        # greet user
-        pass
+        Find.apis()
+        Find.mods()
 
-    def greet_user(self):
-        pass
+        Login(greet=False)
 
     def run(self):
-        pass
+
+        while True:
+            print("Listening...")
+            msg = self.stt.listen()
+
+            if msg == "unison":
+                print("yes?")
+                msg = self.stt.listen()
+                self.stt.switch(msg)
+            else:
+                print(msg)
