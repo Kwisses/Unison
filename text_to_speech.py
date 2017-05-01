@@ -19,12 +19,15 @@ class TextToSpeech:
         mixer.music.load(filepath)
         mixer.music.play()
 
+        # While the audio is playing, do nothing...
         while mixer.music.get_busy():
             pass
 
         mixer.quit()
 
     def speak(self, msg):
+
+        # Get Google TTS object and write it to .mp3 file.
         try:
             tts = gTTS(text=msg, lang="en-us")
         except HTTPError as e:
@@ -36,5 +39,9 @@ class TextToSpeech:
                                     delete=False) as f:
                 tts.write_to_fp(f)
 
+            # Plays .mp3 file and deletes it after it has been played
             self.play_mp3(f.name)
-            os.remove(f.name)
+            try:
+                os.remove(f.name)
+            except PermissionError as e:
+                print(e)
