@@ -6,8 +6,8 @@ Unison aims to be a valuable tool for people with visual impairments.
 
 1. Fork this repository and clone it to your local drive.
 2. From the projects root directory (Unison), run `main.py`.
-    a. This can be done in the command prompt with `python main.py`
-    b. Or it can also be done in your IDE
+..* This can be done in the command prompt with `python main.py`
+..* Or it can also be done in your IDE
 
 ## Dependencies
 pyaudio,
