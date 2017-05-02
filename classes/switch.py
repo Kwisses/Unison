@@ -1,5 +1,4 @@
 
-import os
 from modules.txt_file import TxtFile
 
 

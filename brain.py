@@ -1,18 +1,14 @@
 """The "Brain" class handles most of Unison's processing."""
 
-# Import Settings class
-from settings import Settings
-
 # Import Audio I/O classes
 from speech_to_text import SpeechToText
 from text_to_speech import TextToSpeech
 
-# Import Switch class for Audio In
-from switch import Switch
-
-# Import misc classes
+# Import main program classes
+from classes.switch import Switch
 from classes.find import Find
 from classes.login import Login
+from classes.settings import Settings
 
 
 class Brain:
