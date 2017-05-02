@@ -14,8 +14,10 @@ class TextToSpeech:
         pass
 
     def play_mp3(self, filepath):
+        # Start pygame.mixer object.
         mixer.init()
 
+        # Load and play file
         mixer.music.load(filepath)
         mixer.music.play()
 
@@ -23,10 +25,10 @@ class TextToSpeech:
         while mixer.music.get_busy():
             pass
 
+        # Quits mixer object - for
         mixer.quit()
 
     def speak(self, msg):
-
         # Get Google TTS object and write it to .mp3 file.
         try:
             tts = gTTS(text=msg, lang="en-us")
@@ -35,6 +37,7 @@ class TextToSpeech:
         except Exception as e:
             print("Unknown Google TTS issue: " + str(e))
         else:
+            # Creates a temporary file in the default temp dir
             with NamedTemporaryFile(mode='wb', suffix='.mp3',
                                     delete=False) as f:
                 tts.write_to_fp(f)

@@ -1,13 +1,12 @@
 from subprocess import Popen
 
+from classes.module import Module
 
-class TxtFile:
+
+class TxtFile(Module):
 
     def __init__(self):
-        self.filename = None
-        self.tts = None
-
-        self.process = None
+        super().__init__()
 
     def get_text(self):
         with open(self.filename) as f:

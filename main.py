@@ -1,8 +1,10 @@
 # Unison - Python 3.5 - Johnathon Kwisses (Kwistech)
 
-import sys
+# Import for adding to Python Path
 from os import path
+import sys
 
+# Handles main program logic
 from brain import Brain
 
 

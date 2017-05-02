@@ -1,30 +1,35 @@
+
+import os
 from modules.txt_file import TxtFile
 
 
 class Switch:
 
-    def __init__(self, stt, tts):
+    def __init__(self, stt, tts, settings):
         # Set SpeechToText and TextToSpeech objects
         self.stt = stt
         self.tts = tts
+        self.settings = settings
 
         # Initialize object reference variable
         self.obj = None
 
-        # Get all verbs
+        # Set Instance variables
         self.verbs = self.get_verbs()
 
     def get_verbs(self):
-        with open("./data/settings/verbs.txt") as f:
+        with open(self.settings["verbs_path"]) as f:
             f = f.readlines()
             verbs = [verb.strip("\n") for verb in f]
         return verbs
 
     def cases(self, verb, noun):
+        # This methods needs to be generic!
+        # If it is, it will support all of the modules
+        # in the future.
         if verb == "open":
             self.obj = TxtFile()
-
-            path = "C:\\Users\Johnathon Kwisses\Desktop\\" + noun + ".txt"
+            path = self.settings["desktop_path"] + noun + ".txt"
             self.obj.run(path, self.tts)
 
         if verb == "read":
