@@ -6,7 +6,7 @@ from classes.module import Module
 class TxtFile(Module):
 
     def __init__(self):
-        super().__init__()
+        super().__init__("TxtFile", "open")
 
     def get_text(self):
         with open(self.filename) as f:
@@ -24,7 +24,7 @@ class TxtFile(Module):
     def close_file(self):
         self.process.terminate()
 
-    def run(self, filename, tts):
+    def run(self, noun=None, filename=None, tts=None):
         self.filename = filename
         self.tts = tts
 
