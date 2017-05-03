@@ -24,25 +24,13 @@ class Switch:
         return verbs
 
     def cases(self, verb, noun):
-        # This is almost generic. Need to transfer specific info to the
-        # module and keep the run() method simple with only noun required
-        # I will need to implement more verbs (maybe a list of verbs) inside
-        # each module to check for.
         for mod in self.mods:
-            if verb == mod.verb:
-                path = self.settings["desktop_path"] + noun + ".txt"
-                mod.run(noun=noun, filename=path, tts=self.tts)
-
-        # if verb == "open":
-        #     self.obj = TxtFile()
-        #     path = self.settings["desktop_path"] + noun + ".txt"
-        #     self.obj.run(path, self.tts)
-        #
-        # if verb == "read":
-        #     self.obj.read_text()
-        #
-        # if verb == "close":
-        #     self.obj.close_file()
+            if verb in mod.verbs:
+                # add any additional kwargs below.
+                # will need to update this to be more generic
+                mod.run(stt=self.stt, tts=self.tts,
+                        settings=self.settings,
+                        noun=noun, verb=verb)
 
     def run(self, msg):
         for verb in self.verbs:

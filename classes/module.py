@@ -2,13 +2,13 @@
 
 class Module(object):
 
-    def __init__(self, name, verb):
+    def __init__(self, name, verbs):
         # Essential instance parameters
         self.name = name
-        self.verb = verb
+        self.verbs = verbs
 
         # Other instance parameters
-        self.stt = None
-        self.tts = None
-        self.filename = None
         self.process = None
+
+    def run(self, **kwargs):
+        pass
