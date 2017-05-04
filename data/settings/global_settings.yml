@@ -1,2 +1,3 @@
 keyword: unison
 verbs_path: ./data/settings/verbs.txt
+text_program: notepad.exe

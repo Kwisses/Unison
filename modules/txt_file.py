@@ -21,8 +21,8 @@ class TxtFile(Module):
         text = self.get_text(filename)
         tts.speak(text)
 
-    def launch_file(self, filename):
-        program_name = "notepad.exe"
+    def launch_file(self, settings, filename):
+        program_name = settings["text_program"]
         self.process = Popen([program_name, filename])
 
     def close_file(self):
@@ -41,7 +41,7 @@ class TxtFile(Module):
 
         # Switch statement
         if verb == "open":
-            self.launch_file(filename)
+            self.launch_file(settings, filename)
         elif verb == "read":
             self.read_text(filename, tts)
         elif verb == "close":
