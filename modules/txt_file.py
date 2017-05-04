@@ -1,5 +1,7 @@
+# For opening .txt program
 from subprocess import Popen
 
+# Inherited by class TxtFile
 from classes.module import Module
 
 

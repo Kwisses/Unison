@@ -23,11 +23,13 @@ class Brain:
         self.tts = TextToSpeech()
 
         # Initialize misc objects
-        Find.apis()
+        self.apis = Find.apis()
         self.mods = Find.mods()
 
         # Initialize Switch object
-        self.switch = Switch(self.stt, self.tts, self.settings, self.mods)
+        self.switch = Switch(self.settings,
+                             self.stt, self.tts,
+                             self.apis, self.mods)
 
         # Login
         Login(greet=False)
