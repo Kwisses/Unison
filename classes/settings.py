@@ -3,34 +3,52 @@ import os
 
 class Settings:
 
-    def __init__(self):
-        self.settings_path = "./data/settings/global_settings.yml"
-        self.global_settings = self.get_global_settings()
-        self.instance_settings = self.get_instance_settings()
+    def __init__(self, mods):
+        # Set required parameters
+        self.mods = mods
+        # Main project setting paths
+        project_settings_path = "./data/settings/project_settings.yml"
+        module_settings_path = "./data/settings/module_settings.yml"
+
+        # Get all settings
+        self.project_settings = self.get_main(project_settings_path)
+        self.module_settings = self.get_main(module_settings_path)
+        self.instance_settings = self.get_instance()
+
+        # Container for all settings
         self.settings = {}
 
-    def get_global_settings(self):
-        with open(self.settings_path) as f:
-            f = [setting.strip("\n") for setting in f.readlines()]
-        return f
+    @staticmethod
+    def get_main(settings_path):
+        with open(settings_path) as f:
+            ps = [setting.strip("\n") for setting in f.readlines()]
+        return ps
 
-    def get_instance_settings(self):
+    @staticmethod
+    def get_instance():
         desktop_path = os.path.join(os.environ["HOMEPATH"], "Desktop")
         desktop_path = "C:\\" + desktop_path + "\\"
         return [desktop_path]
 
     def get_verbs(self):
-        with open(self.settings["verbs_path"]) as f:
-            f = f.readlines()
-            verbs = [verb.strip("\n") for verb in f]
+        verbs = []
+
+        for mod in self.mods:
+            for verb in mod.verbs:
+                verbs.append(verb)
+
+        # Checks if there is more than 1 of the same verb
+        if len(verbs) != len(set(verbs)):
+            raise KeyError
+
         return verbs
 
-    def set_global_settings(self):
-        for setting in self.global_settings:
+    def set_main(self, settings):
+        for setting in settings:
             key, value = setting.split(": ")
             self.settings[key] = value
 
-    def set_instance_settings(self):
+    def set_instance(self):
         for setting in self.instance_settings:
             self.settings["desktop_path"] = setting
 
@@ -38,7 +56,11 @@ class Settings:
         self.settings["verbs"] = self.get_verbs()
 
     def set(self):
-        self.set_global_settings()
-        self.set_instance_settings()
+        # Set main settings
+        self.set_main(self.project_settings)
+        self.set_main(self.module_settings)
+        self.set_instance()
+
+        # Set additional settings
         self.set_verbs()
         return self.settings

@@ -14,10 +14,6 @@ from classes.settings import Settings
 class Brain:
 
     def __init__(self):
-        # Get and set all settings
-        self.settings_obj = Settings()
-        self.settings = self.settings_obj.set()
-
         # Initialize Audio I/O objects
         self.stt = SpeechToText()
         self.tts = TextToSpeech()
@@ -25,6 +21,10 @@ class Brain:
         # Initialize misc objects
         self.apis = Find.apis()
         self.mods = Find.mods()
+
+        # Get and set all settings
+        self.settings_obj = Settings(self.mods)
+        self.settings = self.settings_obj.set()
 
         # Initialize Switch object
         self.switch = Switch(self.settings,
