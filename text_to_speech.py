@@ -13,11 +13,9 @@ class TextToSpeech:
     def __init__(self):
         pass
 
-    def play_mp3(self, filepath, cleanup=True):
-        # Start pygame.mixer object.
+    def play_mp3(self, filepath, clear=True):
+        # Start, load, and play pygame.mixer object.
         mixer.init()
-
-        # Load and play file
         mixer.music.load(filepath)
         mixer.music.play()
 
@@ -26,7 +24,7 @@ class TextToSpeech:
             pass
 
         # Quits mixer object - for gTTS
-        if cleanup:
+        if clear:
             mixer.quit()
 
     def speak(self, msg):
@@ -44,7 +42,7 @@ class TextToSpeech:
                 tts.write_to_fp(f)
 
             # Plays .mp3 file and deletes it after it has been played
-            self.play_mp3(f.name, cleanup=True)
+            self.play_mp3(f.name, clear=True)
             try:
                 os.remove(f.name)
             except PermissionError as e:

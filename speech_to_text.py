@@ -12,6 +12,7 @@ class SpeechToText(object):
 
     def listen(self):
         with self.mic as mic:
+            # Set noise floor and start listening
             self.rec.adjust_for_ambient_noise(mic)
             audio = self.rec.listen(mic)
 
