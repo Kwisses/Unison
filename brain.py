@@ -15,8 +15,8 @@ class Brain:
 
     def __init__(self):
         # Initialize Audio I/O objects
-        self.stt = SpeechToText()
         self.tts = TextToSpeech()
+        self.stt = SpeechToText()
 
         # Initialize misc objects
         self.apis = Find.apis()
@@ -37,8 +37,12 @@ class Brain:
     def run(self):
         # Main program loop
         while True:
-            # Listen for keyword
+            # User feedback
+            self.tts.play_mp3(self.settings["feedback"],
+                              cleanup=False)
             print("Listening...")
+
+            # Listen for keyword
             msg = self.stt.listen()
 
             if not msg:
@@ -47,6 +51,5 @@ class Brain:
                 self.switch.run(msg)
 
             # For debugging...
-            # else:
-            #     print(msg)
-            #     self.tts.speak(msg)
+            # print(msg)
+            # self.tts.speak(msg)
