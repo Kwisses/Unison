@@ -19,6 +19,7 @@ class SpeechToText(object):
             try:
                 msg = self.rec.recognize_google(audio, language='en-US')
             except UnknownValueError:
-                print("I couldn't understand you, try again!")
+                pass
+                # print("I couldn't understand you, try again!")
             else:
                 return msg

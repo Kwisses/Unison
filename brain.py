@@ -35,19 +35,25 @@ class Brain:
         Login(greet=False)
 
     def run(self):
+        # Controls program feedback to user
+        feedback = True
+
         # Main program loop
         while True:
-            # User feedback
-            self.tts.play_mp3(self.settings["feedback"],
-                              cleanup=False)
-            print("Listening...")
+            # Program feedback
+            if feedback:
+                self.tts.play_mp3(self.settings["feedback"],
+                                  cleanup=False)
+                print("Listening...")
 
             # Listen for keyword
             msg = self.stt.listen()
 
             if not msg:
+                feedback = False
                 continue
             elif self.settings["keyword"] in msg.lower():
+                feedback = True
                 self.switch.run(msg)
 
             # For debugging...
