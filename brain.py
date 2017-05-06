@@ -10,10 +10,11 @@ from speech_to_text import SpeechToText
 from text_to_speech import TextToSpeech
 
 # Import main program classes
-from classes.switch import Switch
+from classes.desktop import Desktop
 from classes.find import Find
 from classes.login import Login
 from classes.settings import Settings
+from classes.switch import Switch
 
 
 class Brain:
@@ -41,7 +42,10 @@ class Brain:
                              self.stt, self.tts,
                              self.apis, self.mods)
 
-        # Login
+        # Create directory for local file and program access
+        Desktop.create(self.settings)
+
+        # User login
         Login(greet=False)
 
     def feedback(self):

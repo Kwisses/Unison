@@ -52,8 +52,7 @@ class Settings:
             ms = [setting.strip("\n") for setting in f.readlines()]
         return ms
 
-    @staticmethod
-    def get_instance():
+    def get_instance(self):
         """Get and return all instance settings.
         
         For this project, instance (local) settings are defined as being 
@@ -64,8 +63,8 @@ class Settings:
         Returns:
             list: Contains all instance settings.
         """
-        desktop_path = os.path.join(os.path.expanduser("~"), "Desktop\\")
-        return [desktop_path]
+        desktop = os.path.join(os.path.expanduser("~"), "Desktop")
+        return [desktop]
 
     def get_verbs(self):
         """Get all verbs found in each mod.verbs list.
@@ -103,7 +102,7 @@ class Settings:
     def set_instance(self):
         """Set self.instance_settings to self.settings dict."""
         for setting in self.instance_settings:
-            self.settings["desktop_path"] = setting
+            self.settings["desktop"] = setting
 
     def set_verbs(self):
         """Set self.get_verbs to self.settings dict."""

@@ -1,5 +1,7 @@
 """TxtFile module opens, reads, and closes a .txt file."""
 
+from os import path
+
 # For opening .txt program
 from subprocess import Popen
 
@@ -13,6 +15,7 @@ class TxtFile(Module):
         """Set required inherited parameters."""
         super().__init__(name=TxtFile.__name__,
                          verbs=["open", "read", "close"])
+        self.ext = ".txt"
 
     @staticmethod
     def get_text(filename):
@@ -74,8 +77,8 @@ class TxtFile(Module):
         verb = kwargs["verb"]
 
         # Set additional variables
-        desktop_path = settings["desktop_path"]
-        filename = desktop_path + noun + ".txt"
+        desktop = path.join(settings["desktop"], settings["desktop_dir"])
+        filename = path.join(desktop, noun + self.ext)
 
         # Switch statement
         if verb == "open":
