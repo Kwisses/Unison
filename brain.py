@@ -1,4 +1,9 @@
-"""The "Brain" class handles most of Unison's processing."""
+"""The "Brain" class handles most of Unison's processing.
+
+This class sets up all instances of all the necessary classes for the program.
+It then runs the main loop of the program which handles the calls for the 
+program feedback, SpeechToText, Switch and TextToSpeech methods. 
+"""
 
 # Import Audio I/O classes
 from speech_to_text import SpeechToText
@@ -14,6 +19,11 @@ from classes.settings import Settings
 class Brain:
 
     def __init__(self):
+        """Handle core components of Unison.
+        
+        Note:
+            Any changes made to this class should be made with caution.
+        """
         # Initialize Audio I/O objects
         self.tts = TextToSpeech()
         self.stt = SpeechToText()
@@ -35,11 +45,16 @@ class Brain:
         Login(greet=False)
 
     def feedback(self):
+        """Generate audio and visual feedback for the user."""
+        # Audio feedback
         self.tts.play_mp3(self.settings["feedback"], clear=False)
+
+        # Visual feedback
         print("Listening...")
 
     def run(self):
-        # Controls program feedback/response
+        """Run main program loop."""
+        # Controls call to program feedback()
         feedback = True
 
         # Main program loop
@@ -49,11 +64,15 @@ class Brain:
             if feedback:
                 self.feedback()
 
-            # Listen for keyword
+            # Listen to audio from mic
             msg = self.stt.listen()
 
-            # Process message (msg)
+            # Process audio message (msg)
             if not msg:
                 continue
             elif self.settings["keyword"] in msg.lower():
                 self.switch.run(msg)
+
+            # --For debugging--
+            # else:
+            #     self.tts.speak(msg)
