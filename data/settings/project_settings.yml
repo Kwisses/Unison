@@ -1,4 +1,4 @@
 keyword: unison
 feedback: .\data\media\feedback.mp3
 desktop_dir: Unison Desktop
-quit: quit
+quit: terminate

@@ -1,5 +1,6 @@
 """TxtFile module opens, reads, and closes a .txt file."""
 
+# Used to get path to desktop
 from os import path
 
 # For opening .txt program
@@ -27,30 +28,35 @@ class TxtFile(Module):
         Returns:
             list: Contains lines from filename.
         """
-        with open(filename) as f:
-            text = f.readlines()
-        return text
+        try:
+            with open(filename) as f:
+                text = f.readlines()
+        except FileNotFoundError:
+            pass
+        else:
+            return text
 
-    def read_text(self, filename, tts):
+    def read_text(self, filepath, tts):
         """Read text from filename using tts.
         
         Args:
-            filename (str): Name of file to be read.
+            filepath (str): Path to file to be read.
             tts (text_to_speech.TextToSpeech): tts object.
         """
-        text = self.get_text(filename)
-        for line in text:
-            tts.speak(line)
+        lines = self.get_text(filepath)
+        parsed_lines = [line.strip("\n") for line in lines]
+        text = ' '.join(parsed_lines)
+        tts.speak(text)
 
-    def open_file(self, filename, settings):
+    def open_file(self, filepath, settings):
         """Open filename with given settings.
         
         Args:
-            filename (str): Name of file to be opened.
+            filepath (str): Path to file to be opened.
             settings (dict): All program settings.
         """
         program_name = settings["text_program"]
-        self.process = Popen([program_name, filename])
+        self.process = Popen([program_name, filepath])
 
     def close_file(self):
         """Terminate self.process (opened file)."""
@@ -77,13 +83,14 @@ class TxtFile(Module):
         verb = kwargs["verb"]
 
         # Set additional variables
-        desktop = path.join(settings["desktop"], settings["desktop_dir"])
-        filename = path.join(desktop, noun + self.ext)
+        desktop = path.join(settings["desktop"],
+                            settings["desktop_dir"])
+        filepath = path.join(desktop, noun + self.ext)
 
         # Switch statement
         if verb == "open":
-            self.open_file(filename, settings)
+            self.open_file(filepath, settings)
         elif verb == "read":
-            self.read_text(filename, tts)
+            self.read_text(filepath, tts)
         elif verb == "close":
             self.close_file()

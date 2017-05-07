@@ -12,5 +12,5 @@ class Desktop:
             directory = path.join(settings["desktop"],
                                   settings["desktop_dir"])
             mkdir(directory)
-        except:
+        except FileExistsError:
             pass

@@ -12,7 +12,7 @@ methods are called via the set() method.
 """
 
 # Used for getting local paths
-import os
+from os import path
 
 
 class Settings:
@@ -63,7 +63,7 @@ class Settings:
         Returns:
             list: Contains all instance settings.
         """
-        desktop = os.path.join(os.path.expanduser("~"), "Desktop")
+        desktop = path.join(path.expanduser("~"), "Desktop")
         return [desktop]
 
     def get_verbs(self):

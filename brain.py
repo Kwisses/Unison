@@ -73,9 +73,13 @@ class Brain:
 
             # Process audio message (msg)
             if not msg:
+                feedback = False
                 continue
             elif self.settings["keyword"] in msg.lower():
+                feedback = True
                 self.switch.run(msg)
+            elif self.settings["quit"] in msg.lower():
+                quit()
 
             # --For debugging--
             # else:
