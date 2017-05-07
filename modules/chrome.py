@@ -1,13 +1,13 @@
-from apis.google_api import GoogleApi
+from apis.chrome_api import ChromeApi
 from classes.module import Module
 
 
-class Chrome(Module, GoogleApi):
+class Chrome(Module, ChromeApi):
 
     def __init__(self):
         Module.__init__(self, name=Chrome.__name__,
                         verbs=["chrome"])
-        GoogleApi.__init__(self)
+        ChromeApi.__init__(self)
 
     def run(self, **kwargs):
         self.open_chrome()

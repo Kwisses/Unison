@@ -48,43 +48,43 @@ class Brain:
         # User login
         Login(greet=False)
 
-    def feedback(self):
-        """Generate audio and visual feedback for the user."""
-        # Audio feedback
-        self.tts.play_mp3(self.settings["feedback"], clear=False)
+        # Program control variables
+        self.feedback = True
 
-        # Visual feedback
-        print("Listening...")
+    def generate_feedback(self):
+        """Generate audio and visual feedback for the user."""
+        if self.feedback:
+            # Audio feedback
+            self.tts.play_mp3(self.settings["feedback"], clear=False)
+
+            # Visual feedback
+            print("Listening...")
+
+    def process_msg(self, msg):
+        msg = msg.lower()
+        if self.settings["keyword"] in msg:
+            self.switch.run(msg)
+        elif self.settings["quit"] in msg:
+            quit()
 
     def run(self):
         """Run main program loop."""
-        # Controls call to program feedback()
-        feedback = True
-
-        # Main program loop
         while True:
-
             # Program feedback
-            if feedback:
-                self.feedback()
+            self.generate_feedback()
 
             # Listen to audio from mic
             msg = self.stt.listen()
 
-            # Verify audio msg
-            if not msg:
-                feedback = False
-                continue
+            # Verify and process audio msg
+            if msg:
+                self.feedback = True
+                self.process_msg(msg)
             else:
-                feedback = True
-                msg = msg.lower()
-
-            # Process audio message (msg)
-            if self.settings["keyword"] in msg:
-                self.switch.run(msg)
-            elif self.settings["quit"] in msg:
-                quit()
+                self.feedback = False
+                continue
 
             # --For debugging--
+
             # else:
             #     self.tts.speak(msg)

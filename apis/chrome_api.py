@@ -4,7 +4,7 @@ from subprocess import Popen
 from classes.api import Api
 
 
-class GoogleApi(Api):
+class ChromeApi(Api):
 
     def __init__(self):
         super().__init__()
