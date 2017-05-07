@@ -11,7 +11,7 @@ projects GitHub repository. https://github.com/Kwistech/Unison
 """
 
 
-class Module(object):
+class Module:
 
     def __init__(self, name, verbs):
         """Set name of module and all verbs used to call it.

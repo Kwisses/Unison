@@ -71,14 +71,18 @@ class Brain:
             # Listen to audio from mic
             msg = self.stt.listen()
 
-            # Process audio message (msg)
+            # Verify audio msg
             if not msg:
                 feedback = False
                 continue
-            elif self.settings["keyword"] in msg.lower():
+            else:
                 feedback = True
+                msg = msg.lower()
+
+            # Process audio message (msg)
+            if self.settings["keyword"] in msg:
                 self.switch.run(msg)
-            elif self.settings["quit"] in msg.lower():
+            elif self.settings["quit"] in msg:
                 quit()
 
             # --For debugging--

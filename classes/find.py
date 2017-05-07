@@ -10,7 +10,8 @@ import pkgutil
 import inspect
 import traceback
 
-# Local project package
+# Local project packages
+import apis
 import modules
 
 
@@ -23,8 +24,21 @@ class Find:
 
     @staticmethod
     def apis():
-        """Find all project-defined api's."""
-        pass
+        """Find all project-defined apis."""
+        api_lib = []
+
+        for finder, name, _ in pkgutil.iter_modules(apis.__path__):
+            try:
+                file = finder.find_module(name).load_module(name)
+                for member in dir(file):
+                    obj = getattr(file, member)
+                    if inspect.isclass(obj):
+                        for parent in obj.__bases__:
+                            if 'Api' is parent.__name__:
+                                api_lib.append(obj())
+            except Exception as e:
+                print(traceback.format_exc())
+        return api_lib
 
     @staticmethod
     def mods():
