@@ -30,7 +30,7 @@ class Brain:
         self.stt = SpeechToText()
 
         # Initialize misc objects
-        self.apis = Find.apis()
+        self.apis = Find().apis()
         self.mods = Find.mods()
 
         # Get and set all settings
@@ -61,7 +61,11 @@ class Brain:
             print("Listening...")
 
     def process_msg(self, msg):
+        """Process msg through if/else statements."""
+        # For str consistency
         msg = msg.lower()
+
+        # Select process to run
         if self.settings["keyword"] in msg:
             self.switch.run(msg)
         elif self.settings["quit"] in msg:
@@ -85,6 +89,4 @@ class Brain:
                 continue
 
             # --For debugging--
-
-            # else:
-            #     self.tts.speak(msg)
+            # self.tts.speak(msg)

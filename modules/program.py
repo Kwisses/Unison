@@ -1,4 +1,4 @@
-"""Program module launches and quits a local program."""
+"""Program module launches and exits a local program."""
 
 # To get and set desktop path and dir
 from os import path
@@ -15,7 +15,7 @@ class Program(Module):
     def __init__(self):
         """Set required inherited parameters."""
         super().__init__(name=Program.__name__,
-                         verbs=["launch", "quit"])
+                         verbs=["launch", "exit"])
         self.ext = ".exe"
 
     def launch_program(self, filepath):
@@ -26,7 +26,7 @@ class Program(Module):
         """
         self.process = Popen([filepath])
 
-    def quit_program(self):
+    def exit_program(self):
         """Terminate self.process (launched program)."""
         self.process.terminate()
 
@@ -55,4 +55,4 @@ class Program(Module):
         if verb == "launch":
             self.launch_program(filepath)
         elif verb == "quit":
-            self.quit_program()
+            self.exit_program()
