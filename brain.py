@@ -67,9 +67,19 @@ class Brain:
 
         # Select process to run
         if self.settings["keyword"] in msg:
-            self.switch.run(msg)
+            # Runs switch with msg
+            executed = self.switch.run(msg)
+
+            # Handles false positives
+            if executed:
+                self.feedback = True
+            else:
+                self.feedback = False
+
         elif self.settings["quit"] in msg:
             quit()
+        else:
+            self.feedback = False
 
     def run(self):
         """Run main program loop."""
@@ -79,10 +89,10 @@ class Brain:
 
             # Listen to audio from mic
             msg = self.stt.listen()
+            print(msg)
 
             # Verify and process audio msg
             if msg:
-                self.feedback = True
                 self.process_msg(msg)
             else:
                 self.feedback = False

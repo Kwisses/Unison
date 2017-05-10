@@ -1,4 +1,4 @@
-"""Program module launches and exits a local program."""
+"""LocalProgram module launches and exits a local program."""
 
 # To get and set desktop path and dir
 from os import path
@@ -6,15 +6,15 @@ from os import path
 # Opens a program process
 from subprocess import Popen
 
-# # Inherited by class Program
+# Inherited by class LocalProgram
 from classes.module import Module
 
 
-class Program(Module):
+class LocalProgram(Module):
 
     def __init__(self):
         """Set required inherited parameters."""
-        super().__init__(name=Program.__name__,
+        super().__init__(name=LocalProgram.__name__,
                          verbs=["launch", "exit"])
         self.ext = ".exe"
 
@@ -24,7 +24,10 @@ class Program(Module):
         Args:
             filepath (str): Path to program's launcher.
         """
-        self.process = Popen([filepath])
+        try:
+            self.process = Popen([filepath])
+        except FileNotFoundError:
+            print("File not found")
 
     def exit_program(self):
         """Terminate self.process (launched program)."""
@@ -54,5 +57,5 @@ class Program(Module):
         # Switch statement
         if verb == "launch":
             self.launch_program(filepath)
-        elif verb == "quit":
+        elif verb == "exit":
             self.exit_program()

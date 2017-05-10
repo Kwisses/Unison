@@ -38,7 +38,11 @@ class Switch:
         Args:
             verb (str): Action word to match with module.
             noun (str): Item to be acted upon.
+            
+        Returns:
+            bool: True if mod was run, False otherwise.
         """
+        # Second level msg handling
         for mod in self.mods:
             if verb in mod.verbs:
                 # Sends all main project data as **kwargs
@@ -46,14 +50,25 @@ class Switch:
                         stt=self.stt, tts=self.tts,
                         apis=self.apis,
                         verb=verb, noun=noun)
+                return True
+        return False
 
     def run(self, msg):
         """Run Switch class functionality.
         
         Args:
             msg (str): Text to be parsed and used for execute_mods().
+            
+        Returns:
+            bool: True if mod was executed, False otherwise.
         """
+        # Mod execution
+        executed = False
+
+        # First level msg handling
         for verb in self.settings["verbs"]:
             if verb in msg:
                 noun = msg.split(verb + " ")[-1]
-                self.execute_mods(verb, noun)
+                executed = self.execute_mods(verb, noun)
+
+        return executed

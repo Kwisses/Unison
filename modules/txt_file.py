@@ -55,8 +55,7 @@ class TxtFile(Module):
             filepath (str): Path to file to be opened.
             settings (dict): All program settings.
         """
-        program_name = settings["text_program"]
-        self.process = Popen([program_name, filepath])
+        self.process = Popen([settings["text_program"], filepath])
 
     def close_file(self):
         """Terminate self.process (opened file)."""
