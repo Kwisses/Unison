@@ -30,7 +30,8 @@ class InputTest:
         print("~ Ex. Hello world!\n")
         print("Listening...")
 
-    def display_end(self):
+    @staticmethod
+    def display_end():
         """Additional console end-of-test messages"""
         print("\n---\n")
         print("If your message was printed to the console, the test\n"
