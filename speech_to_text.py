@@ -5,7 +5,8 @@ Recognition to recognize the speech. The package connects to the user's
 computer microphone and uses its' input for the conversion.
 """
 
-from speech_recognition import Microphone, Recognizer, UnknownValueError
+from speech_recognition import Microphone, Recognizer, \
+    UnknownValueError, RequestError
 
 
 class SpeechToText(object):
@@ -36,5 +37,7 @@ class SpeechToText(object):
             except UnknownValueError:
                 # Add response code here if user wants error responses
                 pass
+            except RequestError:
+                print("Error: Cannot connect to the Google Api!")
             else:
                 return msg

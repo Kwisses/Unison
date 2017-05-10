@@ -22,7 +22,8 @@ class Find:
         self.api_lib = []
         self.mod_lib = []
 
-    def apis(self):
+    @staticmethod
+    def apis():
         """Find all project-defined apis."""
         api_lib = []
 
