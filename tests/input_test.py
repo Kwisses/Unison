@@ -18,7 +18,7 @@ from speech_to_text import SpeechToText
 class InputTest:
 
     def __init__(self):
-        """Initialize SpeechToText object."""
+        """Initialize SpeechToText object and instance variables."""
         self.stt = SpeechToText()
         self.count = 1
         self.timer = 3
