@@ -17,7 +17,7 @@ from os import path
 
 class Settings:
 
-    def __init__(self, mods):
+    def __init__(self, mods, cd="."):
         """Get all data for settings.
         
         Args:
@@ -27,8 +27,8 @@ class Settings:
         self.mods = mods
 
         # Main project setting paths
-        project_settings_path = "./data/settings/project_settings.yml"
-        module_settings_path = "./data/settings/module_settings.yml"
+        project_settings_path = cd + "/data/settings/project_settings.yml"
+        module_settings_path = cd + "/data/settings/module_settings.yml"
 
         # Get all settings
         self.project_settings = self.get_main(project_settings_path)

@@ -32,7 +32,7 @@ class InputTest:
 
     @staticmethod
     def display_end():
-        """Additional console end-of-test messages"""
+        """Additional console end-of-test messages."""
         print("\n---\n")
         print("If your message was printed to the console, the test\n"
               "was successful! If it was not, please run the test again.\n"
