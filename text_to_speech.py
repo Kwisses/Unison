@@ -17,6 +17,9 @@ Note:
 # Google Text-To-Speech API
 from gtts import gTTS
 
+# Handles activity log
+import logging as log
+
 # To remove .mp3 files
 from os import remove
 
@@ -89,7 +92,7 @@ class TextToSpeech:
         try:
             remove(f.name)
         except PermissionError as e:
-            print(e)
+            log.error(e)
 
     def speak(self, msg):
         """Convert msg to gTTS object to be played as audio.
@@ -105,9 +108,9 @@ class TextToSpeech:
         try:
             tts = gTTS(text=msg, lang="en-us")
         except HTTPError as e:
-            print("Google TTS might not be updated: " + str(e))
+            log.error(e)
         except Exception as e:
-            print("Unknown Google TTS issue: " + str(e))
+            log.error(e)
         else:
             # Create, play, and delete .mp3 file
             f = self.create_mp3(tts)

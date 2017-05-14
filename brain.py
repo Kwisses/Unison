@@ -5,6 +5,9 @@ It then runs the main loop of the program which handles the calls for the
 program feedback, SpeechToText, Switch and TextToSpeech methods. 
 """
 
+# Handles activity log
+import logging as log
+
 # Import Audio I/O classes
 from speech_to_text import SpeechToText
 from text_to_speech import TextToSpeech
@@ -30,7 +33,7 @@ class Brain:
         self.stt = SpeechToText()
 
         # Initialize misc objects
-        self.apis = Find().apis()
+        self.apis = Find.apis()
         self.mods = Find.mods()
 
         # Get and set all settings
@@ -50,6 +53,11 @@ class Brain:
 
         # Program control variables
         self.feedback = True
+
+    def set_logger(self):
+        log.basicConfig(filename=self.settings["log_path"],
+                        format=self.settings["log_format"],
+                        datefmt=self.settings["date_format"])
 
     def generate_feedback(self):
         """Generate audio and visual feedback for the user."""
@@ -83,6 +91,8 @@ class Brain:
 
     def run(self):
         """Run main program loop."""
+        self.set_logger()
+
         while True:
             # Program feedback
             self.generate_feedback()

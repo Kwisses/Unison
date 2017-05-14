@@ -1,5 +1,8 @@
 """LocalProgram module launches and exits a local program."""
 
+# Handles activity log
+import logging as log
+
 # To get and set desktop path and dir
 from os import path
 
@@ -26,7 +29,8 @@ class LocalProgram(Module):
         """
         try:
             self.process = Popen([filepath])
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            log.error(e)
             print("File not found")
 
     def exit_program(self):

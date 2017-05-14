@@ -4,11 +4,14 @@ This class loads all of the projects modules and apis into lists to be
 used in core project files (brain.py, switch.py, etc.).
 """
 
+# Verify objects
+import inspect
+
+# Handles activity log
+import logging as log
 
 # Used for finding local modules
 import pkgutil
-import inspect
-import traceback
 
 # Local project packages
 import apis
@@ -37,7 +40,7 @@ class Find:
                             if 'Api' is parent.__name__:
                                 api_lib.append(obj())
             except Exception as e:
-                print(traceback.format_exc())
+                log.error(e)
         return api_lib
 
     @staticmethod
@@ -55,5 +58,5 @@ class Find:
                             if 'Module' is parent.__name__:
                                 mod_lib.append(obj())
             except Exception as e:
-                print(traceback.format_exc())
+                log.error(e)
         return mod_lib

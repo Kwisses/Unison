@@ -31,5 +31,5 @@ class Desktop:
                               settings["desktop_dir"])
         try:
             mkdir(directory)
-        except FileExistsError:
+        except FileExistsError as e:
             pass

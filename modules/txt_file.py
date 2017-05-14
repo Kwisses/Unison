@@ -1,5 +1,8 @@
 """TxtFile module opens, reads, and closes a .txt file."""
 
+# Handles activity log
+import logging as log
+
 # Used to get path to desktop
 from os import path
 
@@ -31,8 +34,8 @@ class TxtFile(Module):
         try:
             with open(filename) as f:
                 text = f.readlines()
-        except FileNotFoundError:
-            pass
+        except FileNotFoundError as e:
+            log.error(e)
         else:
             return text
 

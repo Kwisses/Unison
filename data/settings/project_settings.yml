@@ -3,3 +3,6 @@ feedback: .\data\media\feedback.mp3
 desktop_dir: Unison Desktop
 quit: terminate
 dependencies: gtts, pocketsphinx, pyaudio, pygame, speech_recognition
+log_path: ./data/logs/unison.log
+log_format: [%(levelname)s - %(asctime)s] - %(message)s
+date_format: %m/%d/%Y %I:%M:%S %p
