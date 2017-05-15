@@ -8,6 +8,7 @@ computer microphone and uses its' input for the conversion.
 # Handles activity log
 import logging as log
 
+# Speech recognizer
 from speech_recognition import Microphone, Recognizer, \
     UnknownValueError, RequestError
 
@@ -38,7 +39,8 @@ class SpeechToText(object):
             try:
                 msg = self.rec.recognize_google(audio, language='en-US')
             except UnknownValueError as e:
-                log.error(e)
+                # Passed as to not log msg of 'None'
+                pass
             except RequestError as e:
                 log.error(e)
             else:

@@ -1,5 +1,6 @@
 keyword: unison
 feedback: .\data\media\feedback.mp3
+error: .\data\media\error.mp3
 desktop_dir: Unison Desktop
 quit: terminate
 dependencies: gtts, pocketsphinx, pyaudio, pygame, speech_recognition

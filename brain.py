@@ -55,6 +55,7 @@ class Brain:
         self.feedback = True
 
     def set_logger(self):
+        """Set basic configuration for log."""
         log.basicConfig(filename=self.settings["log_path"],
                         format=self.settings["log_format"],
                         datefmt=self.settings["date_format"])
@@ -91,6 +92,7 @@ class Brain:
 
     def run(self):
         """Run main program loop."""
+        # Set log
         self.set_logger()
 
         while True:
