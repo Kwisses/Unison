@@ -31,6 +31,9 @@ class Brain:
         self.settings_obj = Settings()
         self.settings = self.settings_obj.set()
 
+        # Set log settings
+        self.set_logger()
+
         # Initialize Audio I/O objects
         self.tts = TextToSpeech(self.settings)
         self.stt = SpeechToText(self.settings)
@@ -41,8 +44,8 @@ class Brain:
         # Create directory for local file and program access
         Desktop.create(self.settings)
 
-        # User login
-        Login(greet=False)
+        # User login - Note: will overwrite some default settings!
+        Login(self.settings)
 
         # Program control variables
         self.feedback = True
@@ -67,6 +70,10 @@ class Brain:
         # For str consistency
         msg = msg.lower()
 
+        # Log msg
+        log.info(msg)
+        print(msg)
+
         # Select process to run
         if self.settings["keyword"] in msg:
             # Runs switch with msg
@@ -85,16 +92,12 @@ class Brain:
 
     def run(self):
         """Run main program loop."""
-        # Set log
-        self.set_logger()
-
         while True:
             # Program feedback
             self.generate_feedback()
 
             # Listen to audio from mic
             msg = self.stt.listen()
-            print(msg)
 
             # Verify and process audio msg
             if msg:
@@ -102,6 +105,3 @@ class Brain:
             else:
                 self.feedback = False
                 continue
-
-            # --For debugging--
-            # self.tts.speak(msg)

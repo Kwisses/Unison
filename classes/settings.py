@@ -59,7 +59,8 @@ class Settings:
             ms = [setting.strip("\n") for setting in f.readlines()]
         return ms
 
-    def get_instance(self):
+    @staticmethod
+    def get_instance():
         """Get and return all instance settings.
         
         For this project, instance (local) settings are defined as being 
@@ -73,10 +74,14 @@ class Settings:
         desktop = path.join(path.expanduser("~"), "Desktop")
         return [desktop]
 
-    def get_apis(self):
+    @staticmethod
+    def get_apis():
+        """Get all project apis."""
         return Find.apis()
 
-    def get_mods(self):
+    @staticmethod
+    def get_mods():
+        """Get all project mods."""
         return Find.mods()
 
     def get_verbs(self):
@@ -122,9 +127,11 @@ class Settings:
             self.settings["desktop"] = setting
 
     def set_apis(self):
+        """Set all project apis."""
         self.settings["apis"] = self.apis
 
     def set_mods(self):
+        """Set all project mods."""
         self.settings["mods"] = self.mods
 
     def set_verbs(self):
