@@ -13,13 +13,19 @@ from speech_recognition import Microphone, Recognizer, \
     UnknownValueError, RequestError
 
 
-class SpeechToText(object):
+class SpeechToText:
 
-    def __init__(self):
+    def __init__(self, settings):
         """Convert audio to text using the speech_recognition package."""
+        # Initialize parameters
+        self.settings = settings
+
         # Initialize speech_recognition objects
         self.rec = Recognizer()
         self.mic = Microphone()
+
+        # Set instance variables
+        self.lang = self.settings["lang"]
 
     def listen(self):
         """Open dynamic microphone input and try audio to text conversion.
@@ -37,7 +43,7 @@ class SpeechToText(object):
 
             # Attempt audio transcription
             try:
-                msg = self.rec.recognize_google(audio, language='en-US')
+                msg = self.rec.recognize_google(audio, language=self.lang)
             except UnknownValueError as e:
                 # Passed as to not log msg of 'None'
                 pass

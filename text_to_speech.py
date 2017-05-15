@@ -35,9 +35,13 @@ from tempfile import NamedTemporaryFile
 
 class TextToSpeech:
 
-    def __init__(self):
+    def __init__(self, settings):
         """Convert text to audio using the gTTS api."""
-        pass
+        # Initialize parameters
+        self.settings = settings
+
+        # Set instance variables
+        self.lang = self.settings["lang"]
 
     @staticmethod
     def create_mp3(tts):
@@ -106,7 +110,7 @@ class TextToSpeech:
         """
         # Get Google TTS object and write it to .mp3 file.
         try:
-            tts = gTTS(text=msg, lang="en-us")
+            tts = gTTS(text=msg, lang=self.lang)
         except HTTPError as e:
             log.error(e)
         except Exception as e:

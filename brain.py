@@ -14,7 +14,6 @@ from text_to_speech import TextToSpeech
 
 # Import main program classes
 from classes.desktop import Desktop
-from classes.find import Find
 from classes.login import Login
 from classes.settings import Settings
 from classes.switch import Switch
@@ -28,22 +27,16 @@ class Brain:
         Note:
             Any changes made to this class should be made with caution.
         """
-        # Initialize Audio I/O objects
-        self.tts = TextToSpeech()
-        self.stt = SpeechToText()
-
-        # Initialize misc objects
-        self.apis = Find.apis()
-        self.mods = Find.mods()
-
-        # Get and set all settings
-        self.settings_obj = Settings(self.mods)
+        # Get and set all settings, apis, and mods
+        self.settings_obj = Settings()
         self.settings = self.settings_obj.set()
 
+        # Initialize Audio I/O objects
+        self.tts = TextToSpeech(self.settings)
+        self.stt = SpeechToText(self.settings)
+
         # Initialize Switch object
-        self.switch = Switch(self.settings,
-                             self.stt, self.tts,
-                             self.apis, self.mods)
+        self.switch = Switch(self.settings, self.stt, self.tts)
 
         # Create directory for local file and program access
         Desktop.create(self.settings)

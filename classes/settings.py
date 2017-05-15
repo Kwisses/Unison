@@ -11,21 +11,24 @@ Each type of setting has its own get and set methods. All of these set
 methods are called via the set() method.
 """
 
+# Handles activity log
+import logging as log
+
 # Used for getting local paths
 from os import path
+
+# Used to find all apis and mods
+from classes.find import Find
 
 
 class Settings:
 
-    def __init__(self, mods, cd="."):
+    def __init__(self, cd="."):
         """Get all data for settings.
         
         Args:
-            mods (list): Contains all found modules.
+            cd (str): Current directory to search from.
         """
-        # Set required parameters
-        self.mods = mods
-
         # Main project setting paths
         project_settings_path = cd + "/data/settings/project_settings.yml"
         module_settings_path = cd + "/data/settings/module_settings.yml"
@@ -34,6 +37,10 @@ class Settings:
         self.project_settings = self.get_main(project_settings_path)
         self.module_settings = self.get_main(module_settings_path)
         self.instance_settings = self.get_instance()
+        
+        # Get all apis and mods
+        self.apis = self.get_apis()
+        self.mods = self.get_mods()
 
         # Container for all settings
         self.settings = {}
@@ -66,6 +73,12 @@ class Settings:
         desktop = path.join(path.expanduser("~"), "Desktop")
         return [desktop]
 
+    def get_apis(self):
+        return Find.apis()
+
+    def get_mods(self):
+        return Find.mods()
+
     def get_verbs(self):
         """Get all verbs found in each mod.verbs list.
         
@@ -84,8 +97,12 @@ class Settings:
                 verbs.append(verb)
 
         # Checks if there is more than 1 of the same verb
-        if len(verbs) != len(set(verbs)):
-            raise KeyError
+        try:
+            if len(verbs) != len(set(verbs)):
+                raise KeyError("There are multiples of 1 verb!")
+        except KeyError as e:
+            log.error(e)
+            raise
 
         return verbs
 
@@ -104,6 +121,12 @@ class Settings:
         for setting in self.instance_settings:
             self.settings["desktop"] = setting
 
+    def set_apis(self):
+        self.settings["apis"] = self.apis
+
+    def set_mods(self):
+        self.settings["mods"] = self.mods
+
     def set_verbs(self):
         """Set self.get_verbs to self.settings dict."""
         self.settings["verbs"] = self.get_verbs()
@@ -118,6 +141,10 @@ class Settings:
         self.set_main(self.project_settings)
         self.set_main(self.module_settings)
         self.set_instance()
+
+        # Set apis and mods into settings
+        self.set_apis()
+        self.set_mods()
 
         # Set additional settings
         self.set_verbs()

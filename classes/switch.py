@@ -12,22 +12,21 @@ an overlap of verb usage in future modules.
 
 class Switch:
 
-    def __init__(self, settings, stt, tts, apis, mods):
+    def __init__(self, settings, stt, tts):
         """Used to select the correct module to run.
         
         Args:
             settings (dict): All program settings.
             stt (speech_to_text.SpeechToText): Handles Speech-To-Text.
             tts (text_to_speech.TextToSpeech): Handles Text-To-Speech.
-            apis (list): All API's.
-            mods (list): All modules.
         """
         # Set all main project data
         self.settings = settings
         self.stt = stt
         self.tts = tts
-        self.apis = apis
-        self.mods = mods
+
+        self.apis = self.settings["apis"]
+        self.mods = self.settings["mods"]
 
     def execute_mods(self, verb, noun):
         """Match verb with appropriate module.
