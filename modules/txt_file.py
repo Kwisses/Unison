@@ -47,9 +47,14 @@ class TxtFile(Module):
             tts (text_to_speech.TextToSpeech): tts object.
         """
         lines = self.get_text(filepath)
-        parsed_lines = [line.strip("\n") for line in lines]
-        text = ' '.join(parsed_lines)
-        tts.speak(text)
+
+        try:
+            parsed_lines = [line.strip("\n") for line in lines]
+        except TypeError as e:
+            log.error(e)
+        else:
+            text = ' '.join(parsed_lines)
+            tts.speak(text)
 
     def open_file(self, filepath, settings):
         """Open filename with given settings.

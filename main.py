@@ -7,10 +7,9 @@ control over their computer via voice command.
 The main program's call structure is as follows:
     main()          - Calls Brain().run()
     Brain()         - Handles most of the processing
+    Settings()      - Get and sets all settings
     SpeechToText()  - Converts audio to text
     TextToSpeech()  - Converts text to audio
-    Find()          - Finds all apis and mods
-    Settings()      - Get and sets all settings
     Switch()        - Handles mod calls
     Login()         - User login (to be added)
     

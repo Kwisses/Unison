@@ -112,7 +112,7 @@ class TextToSpeech:
         try:
             tts = gTTS(text=msg, lang=self.lang)
         except HTTPError as e:
-            log.error(e)
+            log.error(e.strerror)
         except Exception as e:
             log.error(e)
         else:

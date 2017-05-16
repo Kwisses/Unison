@@ -35,8 +35,8 @@ class Brain:
         self.set_logger()
 
         # Initialize Audio I/O objects
-        self.tts = TextToSpeech(self.settings)
         self.stt = SpeechToText(self.settings)
+        self.tts = TextToSpeech(self.settings)
 
         # Initialize Switch object
         self.switch = Switch(self.settings, self.stt, self.tts)
@@ -50,20 +50,26 @@ class Brain:
         # Program control variables
         self.feedback = True
 
+        # Set instance variables
+        self.beep = self.settings["beep"]
+        self.d_beep = self.settings["d_beep"]
+        self.beep_v = self.settings["beep_visual"]
+        self.d_beep_v = self.settings["d_beep_visual"]
+
     def set_logger(self):
         """Set basic configuration for log."""
         log.basicConfig(filename=self.settings["log_path"],
                         format=self.settings["log_format"],
-                        datefmt=self.settings["date_format"])
+                        datefmt=self.settings["date_format"],
+                        level=log.DEBUG)
 
-    def generate_feedback(self):
+    def gen_feedback(self, audio, visual):
         """Generate audio and visual feedback for the user."""
-        if self.feedback:
-            # Audio feedback
-            self.tts.play_mp3(self.settings["feedback"], clear=False)
+        # Audio feedback
+        self.tts.play_mp3(audio, clear=False)
 
-            # Visual feedback
-            print("Listening...")
+        # Visual feedback
+        print(visual)
 
     def process_msg(self, msg):
         """Process msg through if/else statements."""
@@ -72,7 +78,6 @@ class Brain:
 
         # Log msg
         log.info(msg)
-        print(msg)
 
         # Select process to run
         if self.settings["keyword"] in msg:
@@ -81,27 +86,35 @@ class Brain:
 
             # Handles false positives
             if executed:
-                self.feedback = True
+                return True
             else:
-                self.feedback = False
-
+                return False
         elif self.settings["quit"] in msg:
             quit()
         else:
-            self.feedback = False
+            return False
 
     def run(self):
         """Run main program loop."""
         while True:
             # Program feedback
-            self.generate_feedback()
+            if self.feedback:
+                self.gen_feedback(self.beep, self.beep_v)
 
             # Listen to audio from mic
             msg = self.stt.listen()
 
             # Verify and process audio msg
             if msg:
-                self.process_msg(msg)
+                # Check if msg was processed
+                success = self.process_msg(msg)
+
+                # Set feedback according to success
+                if success:
+                    self.feedback = True
+                else:
+                    self.feedback = False
+                    self.gen_feedback(self.d_beep, self.d_beep_v)
             else:
                 self.feedback = False
                 continue

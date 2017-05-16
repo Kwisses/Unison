@@ -26,6 +26,7 @@ class SpeechToText:
 
         # Set instance variables
         self.lang = self.settings["lang"]
+        self.error = False
 
     def listen(self):
         """Open dynamic microphone input and try audio to text conversion.
@@ -48,6 +49,11 @@ class SpeechToText:
                 # Passed as to not log msg of 'None'
                 pass
             except RequestError as e:
-                log.error(e)
+                # Handle multiple log entries
+                print("Can't connect to the internet!")
+                if not self.error:
+                    log.error(e)
+                    self.error = True
             else:
+                self.error = False
                 return msg

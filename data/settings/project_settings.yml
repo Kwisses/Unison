@@ -1,11 +1,13 @@
 keyword: unison
 lang: en-US
-users_path: .\data\users
-feedback: .\data\media\feedback.mp3
-error: .\data\media\error.mp3
-desktop_dir: Unison Desktop
-quit: terminate
 dependencies: gtts, pocketsphinx, pyaudio, pygame, speech_recognition
+beep: ./data/media/beep.mp3
+d_beep: ./data/media/d_beep.mp3
+beep_visual: Listening...
+d_beep_visual: Error, try again!
+desktop_dir: Unison Desktop
+users_path: ./data/users
 log_path: ./data/logs/unison.log
 log_format: [%(levelname)s - %(asctime)s] - %(message)s
 date_format: %m/%d/%Y %I:%M:%S %p
+quit: terminate
