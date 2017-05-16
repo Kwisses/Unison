@@ -10,6 +10,9 @@ For more information on how to create a module for this program, visit the
 projects GitHub repository. https://github.com/Kwistech/Unison
 """
 
+# Handles activity log
+import logging
+
 
 class Module:
 
@@ -29,6 +32,29 @@ class Module:
 
         # Other instance parameters
         self.process = None
+        self.exc_format = "[Module] {}: {}"
+
+    def log(self, exc, msg):
+        """Log exception (exc) and message (msg) in formatted error.
+        
+        Note: If a module throws an exception, call this method to log
+        the error.
+        
+        Example:
+            try:
+                with open(filename) as f:
+                    text = f.readlines()
+            except FileNotFoundError as e:
+                self.log(FileNotFoundError, e)  <--
+            else:
+                return text
+        
+        Args:
+            exc (type): Name of exception.
+            msg (Exception): Error message.
+        """
+        err = self.exc_format.format(exc.__name__, msg)
+        logging.error(err)
 
     def run(self, **kwargs):
         """Run the module given kwargs.

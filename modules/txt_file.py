@@ -1,8 +1,5 @@
 """TxtFile module opens, reads, and closes a .txt file."""
 
-# Handles activity log
-import logging as log
-
 # Used to get path to desktop
 from os import path
 
@@ -21,8 +18,7 @@ class TxtFile(Module):
                          verbs=["open", "read", "close"])
         self.ext = ".txt"
 
-    @staticmethod
-    def get_text(filename):
+    def get_text(self, filename):
         """Get text from filename.
         
         Args:
@@ -35,7 +31,7 @@ class TxtFile(Module):
             with open(filename) as f:
                 text = f.readlines()
         except FileNotFoundError as e:
-            log.error(e)
+            self.log(FileNotFoundError, e)
         else:
             return text
 
@@ -51,7 +47,7 @@ class TxtFile(Module):
         try:
             parsed_lines = [line.strip("\n") for line in lines]
         except TypeError as e:
-            log.error(e)
+            self.log(TypeError, e)
         else:
             text = ' '.join(parsed_lines)
             tts.speak(text)

@@ -30,8 +30,7 @@ class LocalProgram(Module):
         try:
             self.process = Popen([filepath])
         except FileNotFoundError as e:
-            log.error(e)
-            print("File not found")
+            self.log(FileNotFoundError, e)
 
     def exit_program(self):
         """Terminate self.process (launched program)."""
