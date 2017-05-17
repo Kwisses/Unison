@@ -15,13 +15,14 @@ The core of the program depends on the following main program loop:
         # Verify and process audio msg
         if msg:
             self.process_msg(msg)
+            self.feedback = True
         else:
             self.feedback = False
 
-In essence, the program provides the user audio and visual feedback as to what the program is doing. It then listens to the audio input and then selects the appropriate action/response to the message (msg) it heard.
+In essence, the program provides the user audio and visual feedback as to what the program is doing. It then listens to the audio input and then selects the appropriate action/response to the message it heard.
 
 ## Motivation
-Unison was developed as a response to the lack of voice command and response programs available to the visually impaired. This program aims to be an audio equivalent to the keyboard, mouse, and screen combination. In this way, we hope to develop software that improves the computer-using experience for the visually impaired.
+Unison was developed as a response to the lack of voice command and response programs available to the visually impaired. This program aims to be an audio equivalent to the keyboard, mouse, and screen combination. In this way, we hope to develop software that improves the computer user experience for the visually impaired.
 
 ## Installation
 1. Fork or download this repository to your local drive.
@@ -40,10 +41,10 @@ The core program requires the following:
 + [pygame](https://www.pygame.org/wiki/GettingStarted#Pygame%20Installation)
 + [speech_recognition](https://pypi.python.org/pypi/SpeechRecognition/)
 
-Additional dependencies might be required for the programs custom modules and apis!
+Additional dependencies might be required for the programs custom modules and API's!
 
 ## How to use
-To use Unison, run the program (see **Installation**) and wait until you hear a beep. If you do not hear a beep, proceed to the **Tests** section below to test the audio input. The beep notifies the user that the program is ready for audio input. Once heard, a user can command the program with their voice in the following phrasing:
+To use Unison, run the program (see **Installation**) and wait until you hear a beep. If you do not hear a beep, proceed to the **Tests** section below to test your computers audio input. The beep notifies the user that the program is ready for audio input. Once heard, a user can command the program with their voice using the following phrasing:
 
     "keyword verb noun"
 
@@ -53,7 +54,7 @@ Example:
 
 The `keyword` is the word that the program uses to verify the audio. The `verb` is the action which the user wants to do. The `noun` is the object that is going to be acted upon.
 
-Upon the program verifying the message, Unison will process what it has been commanded to do. To quit the program, simply say "quit" and the program will terminate.
+Upon keyword recognition, Unison will process what it has been commanded to do. To quit the program, simply say "quit" and the program will terminate.
 
 *Note: A complete list of verb/noun usage will be available in the project's Wiki in future updates.*
 
@@ -93,7 +94,7 @@ Example output from `all_tests.py`:
 
 ## Contributors
 
-If you would like to contribute to Unison, please contact one of the current contributors (list of current contributors can be found at the top of the repository). We are currently seeking contributors to add additional apis and modules to the program. 
+If you would like to contribute to Unison, please contact one of the current contributors (list of current contributors can be found at the top of the repository). We are currently seeking contributors to add additional API's and modules to the program. 
 
 ## Licence
 
