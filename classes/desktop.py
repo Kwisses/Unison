@@ -32,4 +32,5 @@ class Desktop:
         try:
             mkdir(directory)
         except FileExistsError as e:
+            # Passed as to not log error upon each startup
             pass

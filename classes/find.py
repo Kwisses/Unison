@@ -1,17 +1,17 @@
-"""Find class searches for project's api's and modules.
+"""Finder class searches for project's api's and modules.
 
 This class loads all of the projects modules and apis into lists to be 
 used in core project files (brain.py, switch.py, etc.).
 """
 
 # Verify objects
-import inspect
+from inspect import isclass
 
 # Handles activity log
 import logging as log
 
 # Used for finding local modules
-import pkgutil
+from pkgutil import iter_modules
 
 # Local project packages
 import apis
@@ -22,41 +22,40 @@ class Find:
 
     def __init__(self):
         """Set api and mod instance containers."""
-        self.api_lib = []
-        self.mod_lib = []
+        pass
 
-    @staticmethod
-    def apis():
+    def apis(self):
         """Find all project-defined apis."""
-        api_lib = []
-
-        for finder, name, _ in pkgutil.iter_modules(apis.__path__):
-            try:
-                file = finder.find_module(name).load_module(name)
-                for member in dir(file):
-                    obj = getattr(file, member)
-                    if inspect.isclass(obj):
-                        for parent in obj.__bases__:
-                            if 'Api' is parent.__name__:
-                                api_lib.append(obj())
-            except Exception as e:
-                log.error(e)
+        api_lib = self.run(apis, "Api")
         return api_lib
 
-    @staticmethod
-    def mods():
+    def mods(self):
         """Find all project-defined modules."""
-        mod_lib = []
+        mod_lib = self.run(modules, "Module")
+        return mod_lib
 
-        for finder, name, _ in pkgutil.iter_modules(modules.__path__):
+    def run(self, pkg, pkg_name):
+        """Run generic package finder.
+
+        Args:
+            pkg (__init__): Module to search.
+            pkg_name (str): Name of package.
+        """
+        # List to return
+        lib = []
+
+        # Search pkg and get all relevant package files
+        for finder, name, _ in iter_modules(pkg.__path__):
             try:
-                mod = finder.find_module(name).load_module(name)
-                for member in dir(mod):
-                    obj = getattr(mod, member)
-                    if inspect.isclass(obj):
-                        for parent in obj.__bases__:
-                            if 'Module' is parent.__name__:
-                                mod_lib.append(obj())
+                file = finder.find_module(name)
+                loaded_file = file.load_module(name)
             except Exception as e:
                 log.error(e)
-        return mod_lib
+            else:
+                for member in dir(loaded_file):
+                    obj = getattr(loaded_file, member)
+                    if isclass(obj):
+                        for parent in obj.__bases__:
+                            if pkg_name is parent.__name__:
+                                lib.append(obj())
+        return lib

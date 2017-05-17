@@ -37,7 +37,10 @@ class Settings:
         self.project_settings = self.get_main(project_settings_path)
         self.module_settings = self.get_main(module_settings_path)
         self.instance_settings = self.get_instance()
-        
+
+        # Set Find object
+        self.find = Find()
+
         # Get all apis and mods
         self.apis = self.get_apis()
         self.mods = self.get_mods()
@@ -74,15 +77,13 @@ class Settings:
         desktop = path.join(path.expanduser("~"), "Desktop")
         return [desktop]
 
-    @staticmethod
-    def get_apis():
+    def get_apis(self):
         """Get all project apis."""
-        return Find.apis()
+        return self.find.apis()
 
-    @staticmethod
-    def get_mods():
+    def get_mods(self):
         """Get all project mods."""
-        return Find.mods()
+        return self.find.mods()
 
     def get_verbs(self):
         """Get all verbs found in each mod.verbs list.
