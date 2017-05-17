@@ -43,15 +43,15 @@ The core program requires the following:
 Additional dependencies might be required for the programs custom modules and apis!
 
 ## How to use
-To use Unison, run the program (see Installation) and wait until you hear a beep. If you do not hear a beep, proceed to the Tests section below to test the audio input. The beep notifies the user that the program is ready for audio input. Once heard, a user can command the program with the following phrasing:
+To use Unison, run the program (see **Installation**) and wait until you hear a beep. If you do not hear a beep, proceed to the **Tests** section below to test the audio input. The beep notifies the user that the program is ready for audio input. Once heard, a user can command the program with their voice in the following phrasing:
 
-"[keyword] \[verb] [noun]"
+*"keyword verb noun"*
 
-Example: "unison open default"
+Example: *"unison open default"*
 
-The keyword is the word that the program uses to verify the audio. The verb is the action which the user wants to do. The noun is the object that is going to be acted upon.
+The `keyword` is the word that the program uses to verify the audio. The `verb` is the action which the user wants to do. The `noun` is the object that is going to be acted upon.
 
-Upon the program verifying the message, Unison will process what it has been commanded to do. To quit the program, simply say 'quit' and the program will terminate.
+Upon the program verifying the message, Unison will process what it has been commanded to do. To quit the program, simply say "quit" and the program will terminate.
 
 A complete list of verb/noun usage will be available in the project's Wiki in future updates.
 
