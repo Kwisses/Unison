@@ -33,6 +33,7 @@ This can be done in the command prompt with `python main.py` or it can be done i
 
 ## Dependencies and API Reference
 The core program requires the following:
++ [Python 3.5.0](https://www.python.org/downloads/release/python-350/)
 + [gTTS](https://pypi.python.org/pypi/gTTS)
 + [pocketsphinx](https://pypi.python.org/pypi/pocketsphinx)
 + [PyAudio](https://people.csail.mit.edu/hubert/pyaudio/)
