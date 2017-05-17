@@ -12,6 +12,7 @@ out the project's GitHub repository at https://github.com/Kwistech/Unison
 """
 
 # Used to print audio message to the console
+from classes.settings import Settings
 from speech_to_text import SpeechToText
 
 
@@ -19,7 +20,12 @@ class InputTest:
 
     def __init__(self):
         """Initialize SpeechToText object and instance variables."""
-        self.stt = SpeechToText()
+        # Set settings
+        self.settings_obj = Settings(cd="..")
+        self.settings = self.settings_obj.set()
+
+        # Set instance variables
+        self.stt = SpeechToText(self.settings)
         self.count = 1
         self.timer = 3
 

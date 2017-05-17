@@ -12,6 +12,7 @@ out the project's GitHub repository at https://github.com/Kwistech/Unison
 """
 
 # Used to 'speak' message from console input
+from classes.settings import Settings
 from text_to_speech import TextToSpeech
 
 
@@ -19,7 +20,12 @@ class OutputTest:
 
     def __init__(self):
         """Initialize TextToSpeech object."""
-        self.tts = TextToSpeech()
+        # Set settings
+        self.settings_obj = Settings(cd="..")
+        self.settings = self.settings_obj.set()
+
+        # Set instance variables
+        self.tts = TextToSpeech(self.settings)
 
     @staticmethod
     def display_attempt():

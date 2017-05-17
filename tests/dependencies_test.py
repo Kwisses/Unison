@@ -18,7 +18,7 @@ class Dependencies(object):
 
     def __init__(self):
         """Initialize Settings object and set to get dependencies."""
-        self.settings_obj = Settings(mods=[], cd="..")
+        self.settings_obj = Settings(cd="..")
         self.settings = self.settings_obj.set()
 
         # Get project dependencies (split necessary)
