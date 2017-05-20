@@ -59,7 +59,6 @@ class LocalProgram(Module):
 
         # Switch statement
         if verb == "launch":
-            if not self.process:
-                self.launch_program(filepath)
+            self.launch_program(filepath)
         elif verb == "exit":
             self.exit_program()

@@ -43,6 +43,7 @@ class Brain:
 
         # Create directory for local file and program access
         Desktop.create(self.settings)
+        # Desktop.set(self.settings)
 
         # User login - Note: will overwrite some default settings!
         Login(self.settings)
