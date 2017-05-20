@@ -10,11 +10,11 @@ from subprocess import Popen
 from classes.module import Module
 
 
-class Explorer(Module):
+class FileExplorer(Module):
 
     def __init__(self):
         """Set required inherited parameters."""
-        super().__init__(name=Explorer.__name__,
+        super().__init__(name=FileExplorer.__name__,
                          verbs=["explorer"])
 
     def launch_explorer(self, filepath):

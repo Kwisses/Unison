@@ -8,11 +8,7 @@ it lowers the processing run-time and therefore speeds up return time.
 """
 
 # For creating the program's desktop directory
-from os import mkdir, path, walk, chmod
-
-# Used to copy all .exe files to Unison Desktop
-from shutil import copy
-from stat import S_IWRITE
+from os import mkdir, path
 
 
 class Desktop:

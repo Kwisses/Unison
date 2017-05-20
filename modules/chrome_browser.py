@@ -7,11 +7,11 @@ from apis.chrome_api import ChromeApi
 from classes.module import Module
 
 
-class Chrome(Module, ChromeApi):
+class ChromeBrowser(Module, ChromeApi):
 
     def __init__(self):
         """Set inherited parameters."""
-        Module.__init__(self, name=Chrome.__name__,
+        Module.__init__(self, name=ChromeBrowser.__name__,
                         verbs=["chrome"])
         ChromeApi.__init__(self)
 
