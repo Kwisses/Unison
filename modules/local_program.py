@@ -1,5 +1,8 @@
 """LocalProgram module launches and exits a local program."""
 
+# Handles activity log
+import logging as log
+
 # To get and set desktop path and dir
 from os import path
 
