@@ -8,11 +8,7 @@ it lowers the processing run-time and therefore speeds up return time.
 """
 
 # For creating the program's desktop directory
-from os import mkdir, path, walk, chmod
-
-# Used to copy all .exe files to Unison Desktop
-from shutil import copy
-from stat import S_IWRITE
+from os import mkdir, path
 
 
 class Desktop:
@@ -38,25 +34,3 @@ class Desktop:
         except FileExistsError as e:
             # Passed as to not log error upon each startup
             pass
-
-    # --- This code copies all .exe files found in C:/program Files
-    # --- and copies them to Unison Desktop.
-
-    # --- USE THE BELOW CODE WITH CAUTION!!! ---
-
-    # @staticmethod
-    # def set(settings):
-    #     directory = path.join(settings["desktop"],
-    #                           settings["desktop_dir"])
-    #
-    #     root = "C:\\Program Files"
-    #     for path, subdirs, files in walk(root):
-    #         for name in files:
-    #             if ".exe" in name:
-    #                 root = path.join(path, name)
-    #                 print(root)
-    #                 try:
-    #                     copy(src=root, dst=directory)
-    #                 except PermissionError:
-    #                     chmod(name, S_IWRITE)
-    #                     copy(src=root, dst=directory)
