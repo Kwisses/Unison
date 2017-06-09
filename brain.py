@@ -76,11 +76,11 @@ class Brain:
         # For str consistency
         msg = msg.lower()
 
-        # Log msg
-        log.info(msg)
-
         # Select process to run
         if self.settings["keyword"] in msg:
+            # Log msg
+            log.info(msg)
+
             # Runs switch with msg
             executed = self.switch.run(msg)
 

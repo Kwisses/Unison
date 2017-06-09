@@ -12,9 +12,18 @@ class ChromeBrowser(Module, ChromeApi):
     def __init__(self):
         """Set inherited parameters."""
         Module.__init__(self, name=ChromeBrowser.__name__,
-                        verbs=["chrome"])
+                        verbs=["chrome", "google", "browse"])
         ChromeApi.__init__(self)
 
     def run(self, **kwargs):
         """Run module."""
-        self.handle()
+        verb = kwargs["verb"]
+        noun = kwargs["noun"]
+
+        if verb == "chrome":
+            self.handle()
+        elif verb == "google":
+            self.search_chrome(noun)
+        elif verb == "browse":
+            self.browse_site(noun)
+

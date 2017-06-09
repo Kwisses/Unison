@@ -31,7 +31,8 @@ class LocalProgram(Module):
 
     def exit_program(self):
         """Terminate self.process (launched program)."""
-        self.process.terminate()
+        if self.process:
+            self.process.terminate()
 
     def run(self, **kwargs):
         """Run module by set kwargs and verb switch statement.
