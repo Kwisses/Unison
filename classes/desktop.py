@@ -34,22 +34,27 @@ class Desktop:
         except FileExistsError as e:
             # Passed as to not log error upon each startup
             pass
+        else:
+            pass
+            # self.set(settings)
 
     # --- This code copies all .exe files found in C:/program Files
     # --- and copies them to Unison Desktop.
 
     # --- USE THE BELOW CODE WITH CAUTION!!! ---
 
-    # @staticmethod
-    # def set(settings):
+    # def set(self, settings):
+    #     from os import path, walk, chmod
+    #     from shutil import copy
+    #     from stat import S_IWRITE
     #     directory = path.join(settings["desktop"],
     #                           settings["desktop_dir"])
     #
     #     root = "C:\\Program Files"
-    #     for path, subdirs, files in walk(root):
+    #     for dirpath, subdirs, files in walk(root):
     #         for name in files:
-    #             if ".exe" in name:
-    #                 root = path.join(path, name)
+    #             if name.endswith(".exe"):
+    #                 root = path.join(dirpath, name)
     #                 print(root)
     #                 try:
     #                     copy(src=root, dst=directory)

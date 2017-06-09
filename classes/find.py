@@ -34,6 +34,26 @@ class Find:
         mod_lib = self.run(modules, "Module")
         return mod_lib
 
+    @staticmethod
+    def get_lib_obj(loaded_file, pkg_name, lib):
+        """Get all lib objects.
+        
+        Args:
+            loaded_file (module): File to be parsed.
+            pkg_name (str): Name of package to be parsed.
+            lib (list): Container for all lib objects.
+            
+        Returns:
+            list: Contains all lib objects.
+        """
+        # Append all apis and/or modules to lib
+        for member in dir(loaded_file):
+            obj = getattr(loaded_file, member)
+            if isclass(obj):
+                for parent in obj.__bases__:
+                    if pkg_name is parent.__name__:
+                        lib.append(obj())
+
     def run(self, pkg, pkg_name):
         """Run generic package finder.
 
@@ -41,7 +61,7 @@ class Find:
             pkg (__init__): Module to search.
             pkg_name (str): Name of package.
         """
-        # List to return
+        # List object to be returned
         lib = []
 
         # Search pkg and get all relevant package files
@@ -52,10 +72,5 @@ class Find:
             except Exception as e:
                 log.error(e)
             else:
-                for member in dir(loaded_file):
-                    obj = getattr(loaded_file, member)
-                    if isclass(obj):
-                        for parent in obj.__bases__:
-                            if pkg_name is parent.__name__:
-                                lib.append(obj())
+                self.get_lib_obj(loaded_file, pkg_name, lib)
         return lib
