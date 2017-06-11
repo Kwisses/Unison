@@ -98,4 +98,4 @@ If you would like to contribute to Unison, please contact one of the current con
 
 ## Licence
 
-TBA
+Open Software License 3.0
