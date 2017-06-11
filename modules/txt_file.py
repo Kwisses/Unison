@@ -35,12 +35,13 @@ class TxtFile(Module):
         else:
             return text
 
-    def read_text(self, filepath, tts):
+    def read_text(self, filepath, tts, settings):
         """Read text from filename using tts.
         
         Args:
             filepath (str): Path to file to be read.
             tts (text_to_speech.TextToSpeech): tts object.
+            settings (dict): All program settings.
         """
         lines = self.get_text(filepath)
 
@@ -49,7 +50,12 @@ class TxtFile(Module):
         except TypeError as e:
             self.log(TypeError, e)
         else:
-            text = ' '.join(parsed_lines)
+            spaced_text = ' '.join(parsed_lines)
+
+            # Limits reading length
+            read_limit = int(settings["read_limit"])
+            text = spaced_text[:read_limit]
+
             tts.speak(text)
 
     def open_file(self, filepath, settings):
@@ -94,6 +100,6 @@ class TxtFile(Module):
         if verb == "open":
             self.open_file(filepath, settings)
         elif verb == "read":
-            self.read_text(filepath, tts)
+            self.read_text(filepath, tts, settings)
         elif verb == "close":
             self.close_file()
