@@ -89,8 +89,7 @@ class Brain:
                 return True
             else:
                 return False
-        elif self.settings["quit"] in msg:
-            quit()
+        # Do not process msg
         else:
             return False
 

@@ -28,6 +28,16 @@ class Switch:
         self.apis = self.settings["apis"]
         self.mods = self.settings["mods"]
 
+    def quit_condition(self, msg):
+        """Check for quit word in msg.
+        
+        Args:
+            msg (str): Message to check.
+        """
+        if self.settings["quit"] in msg:
+            self.tts.play_mp3(self.settings["beep"])
+            quit()
+
     def execute_mods(self, verb, noun):
         """Match verb with appropriate module.
         
@@ -61,13 +71,18 @@ class Switch:
         Returns:
             bool: True if mod was executed, False otherwise.
         """
+        # Checks for quit word - quits Unison
+        self.quit_condition(msg)
+
         # Mod execution
         executed = False
 
         # First level msg handling
         for verb in self.settings["verbs"]:
+            # Parse for noun
+            noun = msg.split(verb + " ")[-1]
+            # Run appropriate mods
             if verb in msg:
-                noun = msg.split(verb + " ")[-1]
                 executed = self.execute_mods(verb, noun)
 
         return executed

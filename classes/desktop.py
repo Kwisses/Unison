@@ -36,28 +36,3 @@ class Desktop:
             pass
         else:
             pass
-            # self.set(settings)
-
-    # --- This code copies all .exe files found in C:/program Files
-    # --- and copies them to Unison Desktop.
-
-    # --- USE THE BELOW CODE WITH CAUTION!!! ---
-
-    # def set(self, settings):
-    #     from os import path, walk, chmod
-    #     from shutil import copy
-    #     from stat import S_IWRITE
-    #     directory = path.join(settings["desktop"],
-    #                           settings["desktop_dir"])
-    #
-    #     root = "C:\\Program Files"
-    #     for dirpath, subdirs, files in walk(root):
-    #         for name in files:
-    #             if name.endswith(".exe"):
-    #                 root = path.join(dirpath, name)
-    #                 print(root)
-    #                 try:
-    #                     copy(src=root, dst=directory)
-    #                 except PermissionError:
-    #                     chmod(name, S_IWRITE)
-    #                     copy(src=root, dst=directory)
