@@ -58,7 +58,13 @@ Examples:
 
 The `keyword` is the word that the program uses to verify the audio. The `verb` is the action which the user wants to do. The `noun` is the object that is going to be acted upon.
 
-Upon keyword recognition, Unison will process what it has been commanded to do. To quit the program, simply say "quit" and the program will terminate.
+Upon keyword recognition, Unison will process what it has been commanded to do. To quit the program, simply say "unison terminate" and the program will terminate.
+
+**In order to launch files and programs, a user must copy said files and programs into the "Unison Desktop" directory (created at runtime). Note that to launch programs, a copy of the programs .exe file must be present in this folder. Also, it is a good idea to rename the files and programs in this directory to names that can be said easily.**
+
+    Example:
+        
+        wmplayer.exe --> windows media player.exe
 
 *Note: A complete list of verb/noun usage is available in the project's Wiki.*
 
