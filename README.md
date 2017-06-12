@@ -66,7 +66,7 @@ Upon keyword recognition, Unison will process what it has been commanded to do. 
         
         wmplayer.exe --> windows media player.exe
 
-*Note: A complete list of verb/noun usage is available in the project's Wiki.*
+*Note: A complete list of verb/noun usage is available in the [project's Wiki (under List of Verbs and Nouns)](https://github.com/Kwistech/Unison/wiki/List-of-Verbs-and-Nouns).*
 
 ## Tests
 To run all of the available program tests, run `all_tests.py` located in the projects 'tests' directory. To run one test at a time, simply open the test file you would like to run (Ex. `input_test.py`, `output_test.py`, `dependencies_test.py`), and run that file.
