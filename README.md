@@ -104,7 +104,7 @@ Example output from `all_tests.py`:
 
 ## Contributors
 
-If you would like to contribute to Unison, feel free to fork the repository, develop API's and modules, and submit pull requests. Instructions on how to develop API's and modules can be found in the project's Wiki. Please note and adhere to the repository's licence as it best reflects the aim of the project. We are currently seeking contributors to add additional API's and modules to the program. 
+If you would like to contribute to Unison, feel free to fork the repository, develop API's and modules, and submit pull requests. Instructions on how to develop API's and modules can be found in the [project's wiki for developing API's](https://github.com/Kwistech/Unison/wiki/How-to-Develop-API's) and the [project's wiki for developing modules](https://github.com/Kwistech/Unison/wiki/How-to-Develop-Modules). Please note and adhere to the repository's licence as it best reflects the aim of the project. We are currently seeking contributors to add additional API's and modules to the program. 
 
 ## Licence
 
