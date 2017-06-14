@@ -97,6 +97,7 @@ class Settings:
             versions.
         """
         verbs = []
+        err_msg = "There is a conflict of module verbs!"
 
         for mod in self.mods:
             for verb in mod.verbs:
@@ -105,9 +106,11 @@ class Settings:
         # Checks if there is more than 1 of the same verb
         try:
             if len(verbs) != len(set(verbs)):
-                raise KeyError("There are multiples of 1 verb!")
+                raise KeyError(err_msg)
         except KeyError as e:
             log.error(e)
+            print(err_msg)
+            # Critical error!
             raise
 
         return verbs

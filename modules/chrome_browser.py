@@ -26,4 +26,3 @@ class ChromeBrowser(Module, ChromeApi):
             self.search_chrome(noun)
         elif verb == "browse":
             self.browse_site(noun)
-
