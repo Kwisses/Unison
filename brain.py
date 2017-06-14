@@ -31,7 +31,8 @@ class Brain:
         self.settings_obj = Settings()
         self.settings = self.settings_obj.set()
 
-        # Set log settings
+        # Create log and set logger settings
+        self.create_logger()
         self.set_logger()
 
         # Initialize Audio I/O objects
@@ -55,6 +56,13 @@ class Brain:
         self.d_beep = self.settings["d_beep"]
         self.beep_v = self.settings["beep_visual"]
         self.d_beep_v = self.settings["d_beep_visual"]
+
+    def create_logger(self):
+        """Create log file."""
+        try:
+            open(self.settings["logger"], "r")
+        except FileNotFoundError as e:
+            open(self.settings["logger"], "w")
 
     def set_logger(self):
         """Set basic configuration for log."""

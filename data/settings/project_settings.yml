@@ -1,6 +1,7 @@
 keyword: unison
 lang: en-US
 dependencies: gtts, pocketsphinx, pyaudio, pygame, speech_recognition
+logger: ./data/logs/unison.log
 beep: ./data/media/beep.mp3
 d_beep: ./data/media/d_beep.mp3
 beep_visual: Listening...
