@@ -2,7 +2,7 @@
 
 This class sets up all instances of all the necessary classes for the program.
 It then runs the main loop of the program which handles the calls for the 
-program feedback, SpeechToText, Switch and TextToSpeech methods. 
+program feedback, SpeechToText, Switch, and TextToSpeech methods. 
 """
 
 # Handles activity log
@@ -45,7 +45,7 @@ class Brain:
         # Create directory for local file and program access
         Desktop.create(self.settings)
 
-        # User login - Note: will overwrite some default settings!
+        # User login - Note: might overwrite some default settings!
         Login(self.settings)
 
         # Program control variables

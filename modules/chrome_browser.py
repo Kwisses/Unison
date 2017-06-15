@@ -1,4 +1,4 @@
-"""Chrome module handles the launch and exit of the Chrome browser."""
+"""Chrome module handles the implementation of the Unison's Chrome API."""
 
 # Import the projects Chrome api
 from apis.chrome_api import ChromeApi

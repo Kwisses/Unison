@@ -14,6 +14,7 @@ from os import mkdir, path
 class Desktop:
 
     def __init__(self):
+        """Handle the desktop directory."""
         pass
 
     @staticmethod

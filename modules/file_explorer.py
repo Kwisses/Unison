@@ -28,6 +28,8 @@ class FileExplorer(Module):
     def exit_explorer(self):
         """Terminates self.process."""
         # Not working!
+        # Each time an instance of File Explorer is called, it is
+        # replaced by another instance of File Explorer by the OS.
         self.process.kill()
 
     def run(self, **kwargs):

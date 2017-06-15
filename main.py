@@ -11,6 +11,7 @@ The main program's call structure is as follows:
     SpeechToText()  - Converts audio to text
     TextToSpeech()  - Converts text to audio
     Switch()        - Handles mod calls
+    Desktop()       - Creates desktop directory
     Login()         - User login (to be added)
     
 After the initial setup, the program will make an audible 'beep.' This 'beep'

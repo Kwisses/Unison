@@ -11,12 +11,12 @@ class AllTests:
     def __init__(self):
         """Initialize test objects."""
         # Test objects
+        dep_test = Dependencies()
         input_test = InputTest()
         output_test = OutputTest()
-        dep_test = Dependencies()
 
         # Tests iterator
-        self.tests = [input_test, output_test, dep_test]
+        self.tests = [dep_test, input_test, output_test]
 
     def run(self):
         """Run all available tests."""
