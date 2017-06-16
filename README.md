@@ -47,7 +47,13 @@ The core of the program depends on the following main program loop:
 In essence, the program provides the user audio and visual feedback as to what the program is doing. It then listens to the audio input and then selects the appropriate action/response to the message it heard.
 
 ## How to use
-To use Unison, run the program (see **Installation**) and wait until you hear a beep. If you do not hear a beep, proceed to the **Tests** section below to test your computers audio input. The beep notifies the user that the program is ready for audio input. Once heard, a user can command the program with their voice using the following phrasing:
+To use Unison, run the program (see **Installation**). If this is the first runtime, the program will prompt you for a name and an email address. Input this information and press Enter. 
+
+**Note: Personal information will only be used to verify a users program's licence!**
+
+The program will now create a user profile (E.g. "john.yml") in the "users" directory. A user can personalize their instance of the program by adding already-existing settings to this file. Note that by doing so, a user overwrites the programs default settings. 
+
+After the above steps have occured, wait until you hear a beep. If you do not hear a beep, proceed to the **Tests** section below to test your computers audio input. The beep notifies the user that the program is ready for audio input. Once heard, a user can command the program with their voice using the following phrasing:
 
     "keyword verb noun"
 
