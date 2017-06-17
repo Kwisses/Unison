@@ -27,4 +27,3 @@ class AllTests:
 if __name__ == "__main__":
     all_tests = AllTests()
     all_tests.run()
-

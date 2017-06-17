@@ -81,11 +81,11 @@ class Brain:
 
     def process_msg(self, msg):
         """Process msg through if/else statements."""
-        # For str consistency
-        msg = msg.lower()
-
         # Select process to run
         if self.settings["keyword"] in msg:
+            # For str consistency
+            msg = msg.lower()
+
             # Log msg
             log.info(msg)
 
@@ -99,7 +99,7 @@ class Brain:
                 return False
         # Do not process msg
         else:
-            return False
+            return msg
 
     def run(self):
         """Run main program loop."""
@@ -116,10 +116,13 @@ class Brain:
                 # Check if msg was processed
                 success = self.process_msg(msg)
 
-                # Set feedback according to success
-                if success:
+                # Set feedback according to keyword recognition
+                # and processed msg success
+                if success == msg:
+                    self.feedback = False
+                elif success:
                     self.feedback = True
-                else:
+                elif not success:
                     self.feedback = False
                     self.gen_feedback(self.d_beep, self.d_beep_v)
             else:
