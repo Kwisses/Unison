@@ -60,8 +60,9 @@ class Brain:
     def create_logger(self):
         """Create log file."""
         try:
-            open(self.settings["logger"], "r")
-        except FileNotFoundError as e:
+            with open(self.settings["logger"]) as f:
+                pass
+        except FileNotFoundError:
             open(self.settings["logger"], "w")
 
     def set_logger(self):
