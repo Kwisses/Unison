@@ -1,4 +1,5 @@
-
+# To get and set desktop path and dir
+from os import path
 
 # Opens a program process
 from subprocess import Popen
@@ -12,6 +13,7 @@ class WindowsMediaPlayer(Module):
     def __init__(self):
         super().__init__(name=WindowsMediaPlayer.__name__,
                          verbs=["play", "stop"])
+        self.ext = ".mp3"
 
     def play(self, music_player, music):
         if not self.process:
@@ -28,7 +30,11 @@ class WindowsMediaPlayer(Module):
 
         music_player = settings["music_player"]
 
+        desktop = path.join(settings["desktop"],
+                            settings["desktop_dir"])
+        music = path.join(desktop, noun + self.ext)
+
         if verb == "play":
-            self.play(music_player, noun)
+            self.play(music_player, music)
         elif verb == "stop":
             self.stop()

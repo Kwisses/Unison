@@ -53,7 +53,6 @@ class Switch:
         """
         # Second level msg handling
         for mod in self.mods:
-            print(mod)
             if verb in mod.verbs:
                 # Sends all main project data as **kwargs
                 mod.run(settings=self.settings,

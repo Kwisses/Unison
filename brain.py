@@ -58,12 +58,18 @@ class Brain:
         self.d_beep_v = self.settings["d_beep_visual"]
 
     def create_logger(self):
-        """Create log file."""
+        """Create log file.
+        
+        Attempt to read the .log file to verify creation.
+        
+        Raises:
+            FileNotFoundError: Creates .log file (will occur on first run).
+        """
         try:
-            with open(self.settings["logger"]) as f:
+            with open(self.settings["logger"]):
                 pass
         except FileNotFoundError:
-            open(self.settings["logger"], "w")
+            open(self.settings["logger"], "w+")
 
     def set_logger(self):
         """Set basic configuration for log."""
@@ -81,12 +87,17 @@ class Brain:
         print(visual)
 
     def process_msg(self, msg):
-        """Process msg through if/else statements."""
+        """Process msg through if/else statements.
+        
+        Args:
+            msg (str): Message to be processed.
+            
+        Returns:
+            bool: True if a module was run, False if not.
+            str: msg if the keyword was not in msg.
+        """
         # Select process to run
         if self.settings["keyword"] in msg:
-            # For str consistency
-            msg = msg.lower()
-
             # Log msg
             log.info(msg)
 
@@ -114,11 +125,13 @@ class Brain:
 
             # Verify and process audio msg
             if msg:
+                # For str consistency
+                msg = msg.lower()
+
                 # Check if msg was processed
                 success = self.process_msg(msg)
 
-                # Set feedback according to keyword recognition
-                # and processed msg success
+                # Set feedback according to success
                 if success == msg:
                     self.feedback = False
                 elif success:
