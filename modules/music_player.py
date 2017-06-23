@@ -1,4 +1,4 @@
-"""WindowsMediaPlayer enables a user to play a song in Windows Media Player."""
+"""MusicPlayer enables a user to play a song in their defined music player."""
 
 # To get and set desktop path and dir
 from os import path
@@ -6,15 +6,15 @@ from os import path
 # Opens a program process
 from subprocess import Popen
 
-# Inherited by class LocalProgram
+# Inherited by class MusicPlayer
 from classes.module import Module
 
 
-class WindowsMediaPlayer(Module):
+class MusicPlayer(Module):
 
     def __init__(self):
         """Set required inherited parameters."""
-        super().__init__(name=WindowsMediaPlayer.__name__,
+        super().__init__(name=MusicPlayer.__name__,
                          verbs=["play", "stop"])
         self.ext = ".mp3"
 
@@ -45,16 +45,20 @@ class WindowsMediaPlayer(Module):
                 verb (str): Action word to match with module.
                 noun (str): Item to be acted upon.
         """
+        # Set variables from kwargs
         settings = kwargs["settings"]
         verb = kwargs["verb"]
         noun = kwargs["noun"]
 
+        # Get path to user's music player .exe file
         music_player = settings["music_player"]
 
+        # Set path to project's desktop directory
         desktop = path.join(settings["desktop"],
                             settings["desktop_dir"])
         music = path.join(desktop, noun + self.ext)
 
+        # Switch statement
         if verb == "play":
             self.play(music_player, music)
         elif verb == "stop":
