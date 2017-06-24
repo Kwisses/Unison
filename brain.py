@@ -9,8 +9,8 @@ program feedback, SpeechToText, Switch, and TextToSpeech methods.
 import logging as log
 
 # Import Audio I/O classes
-from speech_to_text import SpeechToText
-from text_to_speech import TextToSpeech
+from apis.text_to_speech import TextToSpeech
+from apis.speech_to_text import SpeechToText
 
 # Import main program classes
 from classes.desktop import Desktop

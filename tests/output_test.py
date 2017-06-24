@@ -11,9 +11,9 @@ project's author(s) and contributors of the issue. For more information, check
 out the project's GitHub repository at https://github.com/Kwistech/Unison
 """
 
+from apis.text_to_speech import TextToSpeech
 # Used to 'speak' message from console input
 from classes.settings import Settings
-from text_to_speech import TextToSpeech
 
 
 class OutputTest:

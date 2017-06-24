@@ -45,7 +45,7 @@ class SpeechToText:
             # Attempt audio transcription
             try:
                 msg = self.rec.recognize_google(audio, language=self.lang)
-            except UnknownValueError as e:
+            except UnknownValueError:
                 # Passed as to not log msg of 'None'
                 pass
             except RequestError as e:
