@@ -1,0 +1,4 @@
+include README.md
+include LICENCE
+recursive-include unison/data/media *.mp3
+recursive-include unison/data/settings *.yml
