@@ -4,18 +4,16 @@ This class loads all of the projects modules and apis into lists to be
 used in core project files (brain.py, switch.py, etc.).
 """
 
-# Verify objects
-from inspect import isclass
-
 # Handles activity log
 import logging as log
-
+# Verify objects
+from inspect import isclass
 # Used for finding local modules
 from pkgutil import iter_modules
 
 # Local project packages
-import apis
-import modules
+from unison import apis
+from unison import modules
 
 
 class Find:

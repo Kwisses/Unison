@@ -2,12 +2,11 @@
 
 # To get and set desktop path and dir
 from os import path
-
 # Opens a program process
 from subprocess import Popen
 
 # Inherited by class MusicPlayer
-from classes.module import Module
+from unison.classes.module import Module
 
 
 class MusicPlayer(Module):

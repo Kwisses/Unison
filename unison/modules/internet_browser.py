@@ -1,13 +1,12 @@
 """InternetBrowser handles the interaction of the users internet browser."""
 
-# Import default Module class
-from classes.module import Module
-
 # Open an internet browser process
 from subprocess import Popen
-
 # For using Google search
 from webbrowser import open_new_tab
+
+# Import default Module class
+from unison.classes.module import Module
 
 
 class InternetBrowser(Module):

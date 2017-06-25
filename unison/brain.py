@@ -8,15 +8,15 @@ program feedback, SpeechToText, Switch, and TextToSpeech methods.
 # Handles activity log
 import logging as log
 
+from unison.apis.speech_to_text import SpeechToText
 # Import Audio I/O classes
-from apis.text_to_speech import TextToSpeech
-from apis.speech_to_text import SpeechToText
-
+from unison.apis.text_to_speech import TextToSpeech
 # Import main program classes
-from classes.desktop import Desktop
-from classes.login import Login
-from classes.settings import Settings
-from classes.switch import Switch
+from unison.classes.desktop import Desktop
+from unison.classes.login import Login
+from unison.classes.switch import Switch
+
+from unison.classes.settings import Settings
 
 
 class Brain:

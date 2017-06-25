@@ -2,12 +2,11 @@
 
 # Used to get path to desktop directory
 from os import path
-
 # Opens File Explorer as a process
 from subprocess import Popen
 
 # Inherited by class Explorer
-from classes.module import Module
+from unison.classes.module import Module
 
 
 class FileExplorer(Module):

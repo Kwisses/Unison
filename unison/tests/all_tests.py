@@ -1,9 +1,9 @@
 """AllTests runs all developer-generated project tests."""
 
+from unison.tests.dependencies_test import Dependencies
 # Developer-generated tests
-from tests.input_test import InputTest
-from tests.output_test import OutputTest
-from tests.dependencies_test import Dependencies
+from unison.tests.input_test import InputTest
+from unison.tests.output_test import OutputTest
 
 
 class AllTests:

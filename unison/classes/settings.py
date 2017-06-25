@@ -13,12 +13,11 @@ methods are called via the set() method.
 
 # Handles activity log
 import logging as log
-
 # Used for getting local paths
 from os import path
 
 # Used to find all apis and mods
-from classes.find import Find
+from unison.classes.find import Find
 
 
 class Settings:

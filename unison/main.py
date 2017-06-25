@@ -23,12 +23,12 @@ For more information, check the project's GitHub repository documents at
 https://github.com/Kwistech/Unison
 """
 
+import sys
 # Import for adding to Python Path
 from os import path
-import sys
 
 # Handles main program logic
-from brain import Brain
+from unison.brain import Brain
 
 
 def main():

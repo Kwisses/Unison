@@ -11,9 +11,10 @@ project's author(s) and contributors of the issue. For more information, check
 out the project's GitHub repository at https://github.com/Kwistech/Unison
 """
 
-from apis.speech_to_text import SpeechToText
+from unison.apis.speech_to_text import SpeechToText
+
 # Used to print audio message to the console
-from classes.settings import Settings
+from unison.classes.settings import Settings
 
 
 class InputTest:

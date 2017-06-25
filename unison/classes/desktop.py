@@ -32,7 +32,7 @@ class Desktop:
                               settings["desktop_dir"])
         try:
             mkdir(directory)
-        except FileExistsError as e:
+        except FileExistsError:
             # Passed as to not log error upon each startup
             pass
         else:

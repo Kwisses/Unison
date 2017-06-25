@@ -2,12 +2,11 @@
 
 # Used to get path to desktop
 from os import path
-
 # For opening .txt program
 from subprocess import Popen
 
 # Inherited by class TxtFile
-from classes.module import Module
+from unison.classes.module import Module
 
 
 class TxtFile(Module):

@@ -11,7 +11,7 @@ out the project's GitHub repository at https://github.com/Kwistech/Unison
 """
 
 # Used to get all project dependencies
-from classes.settings import Settings
+from unison.classes.settings import Settings
 
 
 class Dependencies(object):
