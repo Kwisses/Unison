@@ -19,11 +19,15 @@ class InternetBrowser(Module):
 
     def launch_browser(self, browser_path):
         """Launch a process of the users chosen browser."""
-        self.process = Popen(browser_path)
+        try:
+            self.process = Popen([browser_path])
+        except FileNotFoundError as e:
+            self.log(FileNotFoundError, e)
 
     def exit_browser(self):
         """Exit an existing process of the users browser."""
-        self.process = self.process.terminate()
+        if self.process:
+            self.process.terminate()
 
     def search_internet(self, query):
         """Open a new tab with query.
@@ -44,14 +48,25 @@ class InternetBrowser(Module):
             open_new_tab(self.browse_str.format(query))
 
     def run(self, **kwargs):
-        """Run module."""
+        """Run module by set kwargs and verb switch statement.
+
+        Set using the instructions outlined in the inherited Module class.
+
+        Args:
+            **kwargs: 
+                settings (dict): All program settings.
+                verb (str): Action word to match with module.
+                noun (str): Item to be acted upon.
+        """
+        # Set variables from kwargs
         settings = kwargs["settings"]
         verb = kwargs["verb"]
         noun = kwargs["noun"]
-        print(noun)
 
+        # Get path to internet browser .exe file
         browser_path = settings["internet_browser"]
 
+        # Switch statement
         if verb == "internet":
             if not self.process:
                 self.launch_browser(browser_path)
