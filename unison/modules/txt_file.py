@@ -14,7 +14,7 @@ class TxtFile(Module):
     def __init__(self):
         """Set required inherited parameters."""
         super().__init__(name=TxtFile.__name__,
-                         verbs=["open", "read", "close"])
+                         verbs=["open", "read", "write", "close"])
         self.ext = ".txt"
 
     def get_text(self, filename):
@@ -56,6 +56,15 @@ class TxtFile(Module):
             text = spaced_text[:read_limit]
 
             tts.speak(text)
+
+    def write_text(self, filename, noun):
+        # not tested; might have to create new module
+        if self.process:
+            try:
+                with open(filename, "r+") as f:
+                    f.writelines(noun)
+            except FileNotFoundError as e:
+                self.log(FileNotFoundError, e)
 
     def open_file(self, filepath, settings):
         """Open filename with given settings.
@@ -100,5 +109,7 @@ class TxtFile(Module):
             self.open_file(filepath, settings)
         elif verb == "read":
             self.read_text(filepath, tts, settings)
+        elif verb == "write":
+            self.write_text(filepath, noun)
         elif verb == "close":
             self.close_file()
